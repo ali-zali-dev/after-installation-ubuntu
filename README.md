@@ -87,15 +87,22 @@ https://slack.com/downloads/linux
 
 
 # All in one script
-
+Under dev
 
 
 # TODO
-Mongo DB compass
-Postman
-nvm
-screen shot
-screen recorder
-any desk
-All in one script
-All in one script(selectable)
+- [] Mongo DB compass
+
+- [] Postman
+
+- [] Nvm
+
+- [] Screen shot
+
+- [] Screen recorder
+
+- [] Any desk
+
+- [] All in one script
+
+- [] All in one script(selectable)
