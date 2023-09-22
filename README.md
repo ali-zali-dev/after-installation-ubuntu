@@ -98,6 +98,11 @@ docker-compose up --build -d
 # Install IDE
 https://code.visualstudio.com/Download
 
+# Install postman
+```bash
+sudo snap install postman
+```
+
 # Install messaging social platform
 https://discord.com/download
 
