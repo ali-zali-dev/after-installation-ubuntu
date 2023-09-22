@@ -39,7 +39,13 @@ sudo apt-get install terminator
 ```bash
 sudo apt install flameshot
 ```
-
+## Install internet download manager (XDM)
+```bash
+wget https://github.com/subhra74/xdm/releases/download/7.2.11/xdm-setup-7.2.11.tar.xz
+tar -xf xdm-setup-*.tar.xz
+sudo ./install.sh
+xdman
+```
 # Gnome extensions
 ## Install clipboard-indicator
 https://extensions.gnome.org/extension/779/clipboard-indicator/
