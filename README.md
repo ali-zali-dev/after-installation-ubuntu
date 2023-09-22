@@ -122,6 +122,9 @@ docker-compose up --build -d
 ```
 
 
+# Install Mongo Compass
+https://www.mongodb.com/try/download/compass
+
 # Install IDE
 https://code.visualstudio.com/Download
 
