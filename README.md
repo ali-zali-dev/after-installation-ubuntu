@@ -49,6 +49,10 @@ xdman
 # Gnome extensions
 ## Install clipboard-indicator
 https://extensions.gnome.org/extension/779/clipboard-indicator/
+## Install net-speed-simplified
+https://extensions.gnome.org/extension/3724/net-speed-simplified/
+## Install timezones-extension
+https://extensions.gnome.org/extension/2657/timezones-extension/
 
 
 # Install nodejs with nvm
