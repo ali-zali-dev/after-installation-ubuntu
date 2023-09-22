@@ -35,12 +35,24 @@ https://www.sitepoint.com/zsh-tips-tricks/
 sudo apt-get update
 sudo apt-get install terminator
 ```
+## Install screen shot tools
+```bash
+sudo apt install flameshot
+```
 
 # Gnome extensions
 ## Install clipboard-indicator
 https://extensions.gnome.org/extension/779/clipboard-indicator/
 
-## Install clipboard-indicator
+
+# Install nodejs with nvm
+https://github.com/nvm-sh/nvm
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
+source ~/.zshrc
+```
 
 
 # Install docker and docker-compose
@@ -97,7 +109,7 @@ Under dev
 
 - [] Nvm
 
-- [] Screen shot
+- [*] Screen shot
 
 - [] Screen recorder
 
