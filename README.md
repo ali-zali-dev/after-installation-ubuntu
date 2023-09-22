@@ -130,6 +130,11 @@ https://code.visualstudio.com/Download
 sudo snap install postman
 ```
 
+# Install filezilla
+```bash
+sudo apt install filezilla
+```
+
 # Install messaging social platform
 https://discord.com/download
 
