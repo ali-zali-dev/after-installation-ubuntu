@@ -65,6 +65,7 @@ source ~/.zshrc
 ```
 
 # Calling nvm use automatically in a directory with a .nvmrc file
+Put this into `.zshrc`
 ```bash
 autoload -U add-zsh-hook
 load-nvmrc() {
