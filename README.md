@@ -64,6 +64,11 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 source ~/.zshrc
 ```
 
+# Install PM2
+```bash
+npm install pm2 -g
+```
+
 # Calling nvm use automatically in a directory with a .nvmrc file
 Put this into `.zshrc`
 ```bash
