@@ -5,5 +5,5 @@ services:
     restart: always
     network_mode: host
     volumes:
-      - ./redis_volume/redis-data:/var/lib/redis
-      - ./redis_volume/redis.conf:/usr/local/etc/redis/redis.conf
+      - redis/redis-data:/var/lib/redis
+      - redis/redis.conf:/usr/local/etc/redis/redis.conf
