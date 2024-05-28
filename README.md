@@ -181,17 +181,10 @@ Under dev
 
 
 # TODO
-- [*] Mongo DB compass
-
-- [*] Postman
-
-- [*] Nvm
-
-- [*] Screen shot
-
-- [*] Screen recorder
 
 - [] Any desk
+
+- [] Useful commands
 
 - [] All in one script
 
