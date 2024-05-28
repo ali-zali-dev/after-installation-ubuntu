@@ -2,7 +2,7 @@
 
 What do we need after installation ubuntu?
 
-Ubuntu version: 22.04
+Ubuntu version: 24.04
 
 # Update ubuntu
 ```bash
@@ -30,6 +30,20 @@ git config --list
 
 https://www.sitepoint.com/zsh-tips-tricks/
 
+### Oh My Zsh plugins
+
+https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
+
+#### docker
+
+https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
+https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker-compose
+
+#### node
+https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/npm
+https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/nvm
+https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/pm2
+
 ## Install Terminator
 ```bash
 sudo apt-get update
@@ -39,6 +53,10 @@ sudo apt-get install terminator
 ```bash
 sudo apt install flameshot
 ```
+
+## Install screen recorder kazam
+install it from App Center
+
 ## Install internet download manager (XDM)
 ```bash
 wget https://github.com/subhra74/xdm/releases/download/7.2.11/xdm-setup-7.2.11.tar.xz
@@ -47,29 +65,26 @@ sudo ./install.sh
 xdman
 ```
 # Gnome extensions
+https://wiki.gnome.org/action/show/Projects/GnomeShellIntegration/Installation?action=show&redirect=Projects%2FGnomeShellIntegrationForChrome%2FInstallation
 ## Install clipboard-indicator
 https://extensions.gnome.org/extension/779/clipboard-indicator/
-## Install net-speed-simplified
+## Install net-speed
 https://extensions.gnome.org/extension/3724/net-speed-simplified/
-## Install timezones-extension
-https://extensions.gnome.org/extension/2657/timezones-extension/
+https://extensions.gnome.org/extension/4478/net-speed/
+## Install utc-clock
+https://extensions.gnome.org/extension/6409/utc-clock/
 
 
 # Install nodejs with nvm
 https://github.com/nvm-sh/nvm
 
 ```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 source ~/.zshrc
 ```
 
-# Install PM2
-```bash
-npm install pm2 -g
-```
-
-# Calling nvm use automatically in a directory with a .nvmrc file
+## Calling nvm use automatically in a directory with a .nvmrc file
 Put this into `.zshrc`
 ```bash
 autoload -U add-zsh-hook
@@ -93,10 +108,15 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 ```
 
+# Install PM2
+```bash
+npm install pm2 -g
+```
+
 
 # Install docker and docker-compose
 https://docs.docker.com/engine/install/ubuntu/
-https://docs.docker.com/compose/install/
+
 
 Giving non-root access to docker
 ```bash
@@ -104,27 +124,27 @@ sudo groupadd docker
 sudo gpasswd -a $USER docker
 newgrp docker
 ```
-need log out
+May needs restart
 
-## Install DB with docker-compose
+## Install DB with docker compose
 mongoDB
 ```bash
 cd ./mongo
-docker-compose up --build -d 
+docker compose up -d 
 ```
 
 postgres and pgadmin
 ```bash
 cd ./postgres
-docker-compose up --build -d 
+docker compose up -d 
 cd ../pgadmin
-docker-compose up --build -d 
+docker compose up -d 
 ```
 
 redis
 ```bash
 cd redis
-docker-compose up --build -d 
+docker compose up -d 
 ```
 
 
@@ -150,20 +170,26 @@ https://discord.com/download
 https://slack.com/downloads/linux
 
 
+## Useful commands:
+
+Enable second on the clock
+```bash
+gsettings set org.gnome.desktop.interface clock-show-seconds true
+```
 # All in one script
 Under dev
 
 
 # TODO
-- [] Mongo DB compass
+- [*] Mongo DB compass
 
-- [] Postman
+- [*] Postman
 
-- [] Nvm
+- [*] Nvm
 
 - [*] Screen shot
 
-- [] Screen recorder
+- [*] Screen recorder
 
 - [] Any desk
 
