@@ -13,9 +13,10 @@ sudo apt-get update
 sudo apt install curl
 ```
 
-# Install git
+# Install git and git-flow
 ```bash
 sudo apt install git
+sudo apt install git-flow
 ```
 
 ## Configuring git 
