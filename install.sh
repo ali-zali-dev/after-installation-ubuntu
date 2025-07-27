@@ -56,7 +56,8 @@ update_system() {
 # Install curl
 install_curl() {
     if command_exists curl; then
-        log_warning "curl is already installed"
+        version=$(curl --version | head -n1 | cut -d' ' -f2)
+        log_warning "curl is already installed (version: $version)"
         return
     fi
     log_info "Installing curl..."
@@ -67,7 +68,8 @@ install_curl() {
 # Install git and git-flow
 install_git() {
     if command_exists git; then
-        log_warning "git is already installed"
+        version=$(git --version | cut -d' ' -f3)
+        log_warning "git is already installed (version: $version)"
     else
         log_info "Installing git..."
         sudo apt install git -y
@@ -75,7 +77,8 @@ install_git() {
     fi
     
     if command_exists git-flow; then
-        log_warning "git-flow is already installed"
+        version=$(git flow version | head -n1 | cut -d' ' -f3)
+        log_warning "git-flow is already installed (version: $version)"
     else
         log_info "Installing git-flow..."
         sudo apt install git-flow -y
@@ -97,7 +100,8 @@ install_git() {
 # Install Zsh and Oh My Zsh
 install_zsh() {
     if command_exists zsh; then
-        log_warning "zsh is already installed"
+        version=$(zsh --version | cut -d' ' -f2)
+        log_warning "zsh is already installed (version: $version)"
     else
         log_info "Installing zsh..."
         sudo apt install zsh -y
@@ -105,7 +109,12 @@ install_zsh() {
     fi
     
     if [ -d "$HOME/.oh-my-zsh" ]; then
-        log_warning "Oh My Zsh is already installed"
+        if [ -f "$HOME/.oh-my-zsh/lib/misc.zsh" ]; then
+            version=$(grep "DISABLE_UPDATE_PROMPT" "$HOME/.oh-my-zsh/lib/misc.zsh" 2>/dev/null | head -n1 || echo "installed")
+            log_warning "Oh My Zsh is already installed"
+        else
+            log_warning "Oh My Zsh is already installed"
+        fi
     else
         log_info "Installing Oh My Zsh..."
         sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -116,7 +125,8 @@ install_zsh() {
 # Install Terminator
 install_terminator() {
     if package_installed terminator; then
-        log_warning "Terminator is already installed"
+        version=$(dpkg -l | grep "^ii  terminator " | awk '{print $3}' | cut -d'-' -f1)
+        log_warning "Terminator is already installed (version: $version)"
         return
     fi
     log_info "Installing Terminator..."
@@ -127,7 +137,8 @@ install_terminator() {
 # Install Node.js with nvm
 install_nodejs() {
     if command_exists nvm; then
-        log_warning "nvm is already installed"
+        nvm_version=$(nvm --version 2>/dev/null || echo "unknown")
+        log_warning "nvm is already installed (version: $nvm_version)"
     else
         log_info "Installing nvm..."
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
@@ -137,7 +148,8 @@ install_nodejs() {
     fi
     
     if command_exists node; then
-        log_warning "Node.js is already installed"
+        node_version=$(node --version)
+        log_warning "Node.js is already installed (version: $node_version)"
     else
         log_info "Installing latest LTS Node.js..."
         source ~/.bashrc
@@ -150,7 +162,8 @@ install_nodejs() {
 # Install PM2
 install_pm2() {
     if command_exists pm2; then
-        log_warning "PM2 is already installed"
+        version=$(pm2 --version)
+        log_warning "PM2 is already installed (version: $version)"
         return
     fi
     log_info "Installing PM2..."
@@ -161,7 +174,8 @@ install_pm2() {
 # Install Docker
 install_docker() {
     if command_exists docker; then
-        log_warning "Docker is already installed"
+        version=$(docker --version | cut -d' ' -f3 | cut -d',' -f1)
+        log_warning "Docker is already installed (version: $version)"
     else
         log_info "Installing Docker..."
         # Add Docker's official GPG key
@@ -192,7 +206,8 @@ install_docker() {
 # Install Go
 install_go() {
     if command_exists go; then
-        log_warning "Go is already installed"
+        version=$(go version | cut -d' ' -f3)
+        log_warning "Go is already installed (version: $version)"
         return
     fi
     
@@ -219,7 +234,8 @@ install_go() {
 # Install VS Code
 install_vscode() {
     if command_exists code; then
-        log_warning "VS Code is already installed"
+        version=$(code --version | head -n1)
+        log_warning "VS Code is already installed (version: $version)"
         return
     fi
     log_info "Installing VS Code..."
@@ -234,7 +250,8 @@ install_vscode() {
 # Install Postman
 install_postman() {
     if snap_installed postman; then
-        log_warning "Postman is already installed"
+        version=$(snap list postman | tail -n1 | awk '{print $2}')
+        log_warning "Postman is already installed (version: $version)"
         return
     fi
     log_info "Installing Postman..."
@@ -245,7 +262,8 @@ install_postman() {
 # Install MongoDB Compass
 install_mongodb_compass() {
     if command_exists mongodb-compass; then
-        log_warning "MongoDB Compass is already installed"
+        version=$(mongodb-compass --version 2>/dev/null | head -n1 || echo "installed")
+        log_warning "MongoDB Compass is already installed (version: $version)"
         return
     fi
     log_info "Installing MongoDB Compass..."
@@ -259,7 +277,8 @@ install_mongodb_compass() {
 # Install Redis Insight
 install_redis_insight() {
     if snap_installed redis-insight; then
-        log_warning "Redis Insight is already installed"
+        version=$(snap list redis-insight | tail -n1 | awk '{print $2}')
+        log_warning "Redis Insight is already installed (version: $version)"
         return
     fi
     log_info "Installing Redis Insight..."
@@ -270,7 +289,8 @@ install_redis_insight() {
 # Install DBeaver
 install_dbeaver() {
     if snap_installed dbeaver-ce; then
-        log_warning "DBeaver is already installed"
+        version=$(snap list dbeaver-ce | tail -n1 | awk '{print $2}')
+        log_warning "DBeaver is already installed (version: $version)"
         return
     fi
     log_info "Installing DBeaver..."
@@ -281,7 +301,8 @@ install_dbeaver() {
 # Install Flameshot
 install_flameshot() {
     if package_installed flameshot; then
-        log_warning "Flameshot is already installed"
+        version=$(dpkg -l | grep "^ii  flameshot " | awk '{print $3}' | cut -d'-' -f1)
+        log_warning "Flameshot is already installed (version: $version)"
         return
     fi
     log_info "Installing Flameshot..."
@@ -292,7 +313,8 @@ install_flameshot() {
 # Install OBS Studio
 install_obs() {
     if package_installed obs-studio; then
-        log_warning "OBS Studio is already installed"
+        version=$(dpkg -l | grep "^ii  obs-studio " | awk '{print $3}' | cut -d'-' -f1)
+        log_warning "OBS Studio is already installed (version: $version)"
         return
     fi
     log_info "Installing OBS Studio..."
@@ -303,7 +325,8 @@ install_obs() {
 # Install FileZilla
 install_filezilla() {
     if package_installed filezilla; then
-        log_warning "FileZilla is already installed"
+        version=$(dpkg -l | grep "^ii  filezilla " | awk '{print $3}' | cut -d'-' -f1)
+        log_warning "FileZilla is already installed (version: $version)"
         return
     fi
     log_info "Installing FileZilla..."
@@ -314,7 +337,8 @@ install_filezilla() {
 # Install Google Chrome
 install_chrome() {
     if command_exists google-chrome; then
-        log_warning "Google Chrome is already installed"
+        version=$(google-chrome --version | cut -d' ' -f3)
+        log_warning "Google Chrome is already installed (version: $version)"
         return
     fi
     log_info "Installing Google Chrome..."
@@ -328,7 +352,8 @@ install_chrome() {
 # Install XDM
 install_xdm() {
     if command_exists xdman; then
-        log_warning "XDM is already installed"
+        version=$(xdman --version 2>/dev/null | head -n1 || echo "installed")
+        log_warning "XDM is already installed (version: $version)"
         return
     fi
     log_info "Installing XDM (Xtreme Download Manager)..."

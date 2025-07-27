@@ -19,6 +19,17 @@ What do we need after installation ubuntu?
 - [Useful Commands](#useful-commands)
 - [TODO](#todo)
 
+## 🚀 Automated Installation
+
+For an interactive installation experience, run the automated installation script:
+
+```bash
+chmod +x install.sh
+./install.sh
+```
+
+This script allows you to select which applications and tools you want to install.
+
 ## 🔧 System Setup & Updates
 
 ### Update Ubuntu
@@ -265,13 +276,3 @@ docker compose up -d
 gsettings set org.gnome.desktop.interface clock-show-seconds true
 ```
 
-## 🚀 Automated Installation
-
-For an interactive installation experience, run the automated installation script:
-
-```bash
-chmod +x install.sh
-./install.sh
-```
-
-This script allows you to select which applications and tools you want to install.
