@@ -15,6 +15,9 @@ This folder contains comprehensive CLI command references for all the tools ment
 - **[PM2](pm2.md)** - Process management, clustering, monitoring
 - **[Go](go.md)** - Go development, modules, building, testing
 
+### Virtualization
+- **[VirtualBox](virtualbox.md)** - VM management, snapshots, networking, guest additions
+
 ### Databases
 - **[MongoDB](mongodb.md)** - Database operations, aggregation, indexing
 - **[PostgreSQL](postgresql.md)** - SQL operations, backup/restore, user management
@@ -42,6 +45,10 @@ nvm use && npm install
 pm2 list && pm2 logs
 go mod tidy && go test ./...
 
+# Virtualization
+VBoxManage list vms
+VBoxManage startvm "VM_Name"
+
 # Database operations
 mongosh --eval "show dbs"
 psql -l
@@ -60,6 +67,9 @@ alias gs='git status'
 alias gp='git pull'
 alias dc='docker compose'
 alias pm='pm2'
+alias vbm='VBoxManage'
+alias vblist='VBoxManage list vms'
+alias vbstart='VBoxManage startvm'
 alias screenshot='flameshot gui'
 ```
 

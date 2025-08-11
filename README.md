@@ -171,6 +171,31 @@ sudo ./install.sh
 xdman
 ```
 
+### Install VirtualBox
+```bash
+# Add Oracle VirtualBox repository
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+
+# Add repository to sources list
+sudo sh -c 'echo "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" >> /etc/apt/sources.list.d/virtualbox.list'
+
+# Update package list and install
+sudo apt-get update
+sudo apt-get install virtualbox-7.0 -y
+
+# Add current user to vboxusers group
+sudo usermod -aG vboxusers $USER
+```
+*Note: Log out and log back in for group changes to take effect*
+
+#### Install VirtualBox Extension Pack (Optional)
+Download the extension pack manually from Oracle's website for additional features like USB 2.0/3.0 support, RDP, and host webcam passthrough.
+```bash
+# After downloading the extension pack file:
+VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-*.vbox-extpack
+```
+
 ## 🗄️ Database & Data Management
 
 ### Install MongoDB Compass

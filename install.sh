@@ -364,6 +364,34 @@ install_xdm() {
     log_success "XDM installed successfully"
 }
 
+# Install VirtualBox
+install_virtualbox() {
+    if command_exists virtualbox; then
+        version=$(virtualbox --help | head -n1 | grep -oP 'v\K[0-9]+\.[0-9]+\.[0-9]+' || echo "installed")
+        log_warning "VirtualBox is already installed (version: $version)"
+        return
+    fi
+    log_info "Installing VirtualBox..."
+    
+    # Add Oracle VirtualBox repository
+    wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+    wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+    
+    # Add repository to sources list
+    sudo sh -c 'echo "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian $(lsb_release -cs) contrib" >> /etc/apt/sources.list.d/virtualbox.list'
+    
+    # Update package list and install
+    sudo apt-get update
+    sudo apt-get install virtualbox-7.0 -y
+    
+    # Add current user to vboxusers group
+    sudo usermod -aG vboxusers $USER
+    
+    log_success "VirtualBox installed successfully"
+    log_warning "Please log out and log back in for group changes to take effect"
+    log_info "You may also want to install the VirtualBox Extension Pack manually from Oracle's website"
+}
+
 # Interactive menu system
 show_menu() {
     clear
@@ -373,7 +401,7 @@ show_menu() {
     echo ""
     echo "1)  System Setup & Updates (curl, git, git-flow)"
     echo "2)  Shell & Terminal Tools (Zsh, Oh My Zsh, Terminator)"
-    echo "3)  Development Tools (Node.js/nvm, PM2, Docker, Go, VS Code, Postman, XDM)"
+    echo "3)  Development Tools (Node.js/nvm, PM2, Docker, Go, VS Code, Postman, XDM, VirtualBox)"
     echo "4)  Database & Data Management (MongoDB Compass, Redis Insight, DBeaver)"
     echo "5)  Media & Recording Tools (Flameshot, OBS Studio)"
     echo "6)  File Transfer & Management (FileZilla)"
@@ -455,11 +483,12 @@ development_menu() {
     echo "5) Install VS Code"
     echo "6) Install Postman"
     echo "7) Install XDM"
-    echo "8) Install All"
-    echo "9) Back to Main Menu"
+    echo "8) Install VirtualBox"
+    echo "9) Install All"
+    echo "10) Back to Main Menu"
     echo ""
     
-    read -p "Enter your choice [1-9]: " choice
+    read -p "Enter your choice [1-10]: " choice
     case $choice in
         1) install_nodejs ;;
         2) install_pm2 ;;
@@ -468,7 +497,8 @@ development_menu() {
         5) install_vscode ;;
         6) install_postman ;;
         7) install_xdm ;;
-        8) 
+        8) install_virtualbox ;;
+        9) 
             install_nodejs
             install_pm2
             install_docker
@@ -476,8 +506,9 @@ development_menu() {
             install_vscode
             install_postman
             install_xdm
+            install_virtualbox
             ;;
-        9) return ;;
+        10) return ;;
         *) log_error "Invalid option" ;;
     esac
     
@@ -612,6 +643,7 @@ install_all() {
         install_vscode
         install_postman
         install_xdm
+        install_virtualbox
         
         # Database Tools
         install_mongodb_compass
